@@ -1,0 +1,12 @@
+type:image
+module:image
+image-file:oska.gif
+image-file-mime:image/gif
+image-file-width:85
+object-width:103px
+image-file-height:85
+object-height:435px
+image-background-repeat:no-repeat
+object-left:192px
+object-top:292px
+object-zindex:100

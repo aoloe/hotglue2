@@ -221,7 +221,7 @@ $(document).ready(function() {
 	});
 	$.glue.contextmenu.register('image', 'image-ratio', elem);
 	
-	elem = $('<img src="'+$.glue.base_url+'modules/image/image-pos.png" alt="btn" title="adjust image selection" width="32" height="32">');
+	elem = $('<img src="'+$.glue.base_url+'modules/image/image-pos.png" alt="btn" title="adjust image selection (hold and drag)" width="32" height="32">');
 	$(elem).bind('mousedown', function(e) {
 		var obj = $(this).data('owner');
 		var a = $(obj).css('background-position').split(' ');

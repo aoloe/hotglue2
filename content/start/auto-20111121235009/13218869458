@@ -1,0 +1,14 @@
+type:image
+module:image
+image-file:oska.gif
+image-file-mime:image/gif
+image-file-width:85
+object-width:153px
+image-file-height:85
+object-height:156.591px
+image-background-repeat:no-repeat
+object-left:140px
+object-top:67px
+object-zindex:100
+object-lock:matrix(-1, 0, 0, 1, 0, 0)
+transform-flip:matrix(-1, 0, 0, 1, 0, 0)

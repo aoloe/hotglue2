@@ -213,7 +213,7 @@ function elem_finalize($elem)
 		unset($elem['class']);
 	}
 	foreach ($elem as $key=>$val) {
-		if ($key == 'tag' || $key == 'id' || $key == 'class' || $key == 'val' || $key == 'body_inline') {
+		if ($key == 'tag' || $key == 'id' || $key == 'class' || $key == 'val') {
 			continue;
 		} elseif ($key == 'style') {
 			$ret .= ' style="';
@@ -403,26 +403,10 @@ function html_add_css($url, $prio = 5, $media = '')
 	$html['header']['css'][] = array('url'=>$url, 'prio'=>$prio, 'media'=>$media);
 }
 
-
-/**
- *	add a css rule to the html header
- *
- *	@param string $rule css rule
- *	@param int $prio when to insert code (0 - very early to 9 - late)
- */
-function html_add_css_inline($rule, $prio = 5)
-{
-	global $html;
-	if (!@is_array($html['header']['css_inline'])) {
-		$html['header']['css_inline'] = array();
-	}
-	$html['header']['css_inline'][] = array('rule'=>$rule, 'prio'=>$prio);
-}
-
 /**
  *	add head definitions to the html header
  *
- *	@param string $def heade definition
+ *	@param string $def header idefinition
  *	@param int $prio when to insert code (0 - very early to 9 - late)
  */
 function html_add_head_inline($def, $prio = 5)
@@ -638,23 +622,6 @@ function html_finalize(&$cache = false)
 	}
 	if (@is_array($html['header']['js_var'])) {
 		$ret .= array_to_js($html['header']['js_var']);
-	}
-	if (@is_array($html['header']['js_inline'])) {
-		_array_sort_by_prio($html['header']['js_inline']);
-		foreach ($html['header']['js_inline'] as $c) {
-			if (!empty($c['reason'])) {
-				$ret .= '<!-- '.$c['reason'].' -->'.nl();
-				$ret .= '<script type="text/javascript">'.nl();
-				// if the code ends with a newline character, remove it
-				if (substr($c['code'], -1) == "\n") {
-					$c['code'] = substr($c['code'], 0, -1);
-				}
-				// move code in by one tab
-				$c = str_replace("\n", "\n\t", $c);
-				$ret .= tab().$c['code'].nl();
-				$ret .= '</script>'.nl();
-			}
-		}
 	}
 	if (@is_array($html['header']['head_inline'])) {
 		_array_sort_by_prio($html['header']['head_inline']);

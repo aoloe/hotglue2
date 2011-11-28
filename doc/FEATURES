@@ -530,7 +530,7 @@ REVISIONS BROWSER
   * the page browser can be accessed through the "page" menu or by navigating 
   to the base url appended with "?pagename/revisions" (without quotes)
 
-  * ctrl-z (typical undo keybinding) triggers a dialog window which suggests
+  * [ctrl]+[z] (typical undo key binding) triggers a dialog window which suggests
   to use revisions in place of undo.
   
   * using the controls in the window's lower right corner you can navigate 
