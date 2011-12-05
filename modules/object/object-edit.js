@@ -33,7 +33,7 @@ $(document).ready(function() {
 			$.glue.object.save(clone);
 		});
 	});
-	$.glue.contextmenu.register('object', 'object-clone', elem);
+	$.glue.contextmenu.register('object', 'object-clone', elem, 1);
 	
 	elem = $('<img src="'+$.glue.base_url+'modules/object/object-transparency.png" alt="btn" title="change transparency" width="32" height="32">');
 	$(elem).bind('glue-menu-activate', function(e) {
@@ -65,7 +65,7 @@ $(document).ready(function() {
 		});
 		return false;
 	});
-	$.glue.contextmenu.register('object', 'object-transparency', elem);
+	$.glue.contextmenu.register('object', 'object-transparency', elem, 2);
 	
 	elem = $('<img src="'+$.glue.base_url+'modules/object/object-zindex.png" alt="btn" title="bring object to foreground or background" width="32" height="32">');
 	$(elem).bind('mousedown', function(e) {
@@ -95,7 +95,7 @@ $(document).ready(function() {
 		});
 		return false;
 	});
-	$.glue.contextmenu.register('object', 'object-zindex', elem);
+	$.glue.contextmenu.register('object', 'object-zindex', elem, 3);
 	
 	elem = $('<img src="'+$.glue.base_url+'modules/object/object-link.png" alt="btn" title="make the object a link" width="32" height="32">');
 	$(elem).bind('click', function(e) {
@@ -109,7 +109,7 @@ $(document).ready(function() {
 				if (data['#data']['object-link'] !== undefined) {
 					old_link = data['#data']['object-link'];
 				}
-				var link = prompt('Enter link (e.g. http://disney.com/, somepage, #someanchor)', old_link);
+				var link = prompt('Enter link (e.g. http://hotglue.me/, somepage, #someanchor)', old_link);
 				if (link === null || link == old_link) {
 					return;
 				}
@@ -151,5 +151,5 @@ $(document).ready(function() {
 		// update canvas
 		$.glue.canvas.update();
 	});
-	$.glue.contextmenu.register('object', 'object-delete', elem);
+	$.glue.contextmenu.register('object', 'object-delete', elem, 20);
 });

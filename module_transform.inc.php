@@ -1,8 +1,8 @@
 <?php
 
 /**
- *	module_anchor.inc.php
- *	Module for adding named anchor elements
+ *	module_transform.inc.php
+ *	Module for performing css transformations on objects
  *
  *	Copyright Gottfried Haider, Danja Vasiliev 2010.
  *	This source code is licensed under the GNU General Public License.
@@ -29,10 +29,14 @@ function transform_alter_render_early($args)
 	}
 
 	if (!empty($obj['transform-flip'])) {
-		elem_css($elem, '-webkit-transform', $obj['transform-flip']);
-		elem_css($elem, '-moz-transform', $obj['transform-flip']);
-		elem_css($elem, '-o-transform', $obj['transform-flip']);
-		elem_css($elem, '-ms-transform', $obj['transform-flip']);
+		$moz_transform = $obj['transform-flip'];
+		$all_transform = str_replace("px", "", $moz_transform);
+
+		elem_css($elem, 'transform', $all_transform);
+		elem_css($elem, '-webkit-transform', $all_transform);
+		elem_css($elem, '-moz-transform', $moz_transform);
+		elem_css($elem, '-o-transform', $all_transform);
+		elem_css($elem, '-ms-transform', $all_transform);
 
 	}
 	
@@ -88,6 +92,7 @@ function transform_render_page_early($args)
 			html_add_js(base_url().'modules/transform/transform.js');
 		}
 //		html_add_css(base_url().'modules/transform/transform.css');
+		html_add_js(base_url().'modules/transform/jquery.transform-0.9.3.min.js');
 		return true;
 	} else {
 		return false;

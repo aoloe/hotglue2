@@ -1,8 +1,8 @@
 <?php
 
 /**
- *	module_anchor.inc.php
- *	Module for adding named anchor elements
+ *	module_lock.inc.php
+ *	Module for locking objects
  *
  *	Copyright Gottfried Haider, Danja Vasiliev 2010.
  *	This source code is licensed under the GNU General Public License.
@@ -29,8 +29,7 @@ function lock_alter_render_early($args)
 	}
 
 	if (!empty($obj['object-lock'])) {
-		elem_add_class($elem, 'lock');
-//		elem_del_class($elem, 'image');
+		elem_add_class($elem, 'locked');
 	}
 	
 	return true;
@@ -45,10 +44,12 @@ function lock_alter_save($args)
 		return false;
 	}
 
-	if (!elem_has_class($elem, 'lock')) {
+	if (elem_has_class($elem, 'locked')) {
+		$obj['object-lock'] = 'locked';
+	} else {
 		unset($obj['object-lock']);
-	}	
-	
+	}
+
 	return true;
 }
 
@@ -62,8 +63,7 @@ function lock_render_object($args)
 	}
 	
 	if (!empty($obj['object-lock'])) {
-		elem_css($elem, '-webkit-transform', $obj['object-lock']);
-		elem_css($elem, '-moz-transform', $obj['object-lock']);
+		elem_css($elem, 'object-lock', $obj['object-lock']);
 	}
 
 }
@@ -77,7 +77,6 @@ function lock_render_page_early($args)
 		} else {
 			html_add_js(base_url().'modules/lock/lock.js');
 		}
-//		html_add_css(base_url().'modules/transform/transform.css');
 		return true;
 	} else {
 		return false;
