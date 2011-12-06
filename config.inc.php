@@ -30,17 +30,17 @@
 @define('JQUERY', 'js/jquery-1.5.2.min.js');	// can be an absolute url
 @define('LOCK_TIME', 5000);			// maximum time in ms to wait for an object lock
 @define('LOG_FILE', 'content/log.txt');		// log file, must be writable
-@define('LOG_LEVEL', 'debug');			// minimum log level (can be error, warn, info, debug)
+@define('LOG_LEVEL', 'info');			// minimum log level (can be error, warn, info, debug)
 @define('SHORT_URLS', false);			// use short urls internally
 @define('SHOW_FRONTEND_ERRORS', true);
 @define('SITE_NAME', 'hotglue 1.0');
 @define('SNAPSHOT_MAX_AGE', 60*60*24*7);	// auto- revisions are automatically deleted after n seconds (zero to disable)
 @define('SNAPSHOT_MIN_AGE', 60*60);		// auto- revisions are created every n seconds (zero to disable)
 @define('USE_HOTGLUE_ERRORS', true);		// use hotglue theming for error pages
-@define('USE_MIN_FILES', false);		// use minified files if possible (see also JQUERY define)
+@define('USE_MIN_FILES', true);		// use minified files if possible (see also JQUERY define)
 // default modules
-@define('IMAGE_JPEG_QUAL', 90);				// quality for jpeg resizing (0 < 100)
-@define('IMAGE_PNG_QUAL', 6);				// quality for png resizing (9 < 0)
+@define('IMAGE_JPEG_QUAL', 95);				// quality for jpeg resizing (0 < 100)
+@define('IMAGE_PNG_QUAL', 7);				// quality for png resizing (9 < 0)
 @define('IMAGE_RESIZING', true);			// resize uploaded images on the server (needs gd installed)
 @define('IMAGE_UPLOAD_RESIZE_LARGER', '120%');	// automatically resize uploaded image when larger than n% of window width or height (set to 0% to disable)
 @define('IMAGE_UPLOAD_RESIZE_TO', '80%');		// target size in n% of window width or height

@@ -171,6 +171,9 @@ COMMON OBJECT PROPERTIES
   * you can also press [del] to do the same (this also works for deleting 
   multiple objects at once, when no contextmenu is being shown
 
+  * lock object: when clicked it locks the object from being modified in any way,
+  the menu only contains "lock" icon. 
+
 OBJECT TYPES: TEXT
 
   * select the text icon in the "new object" menu to create a text object
