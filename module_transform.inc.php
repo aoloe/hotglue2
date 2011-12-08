@@ -68,7 +68,7 @@ function transform_alter_save($args)
 
 function transform_render_object($args)
 {
-	$elem = $args['elem'];
+	$elem = &$args['elem'];
 	$obj = &$args['obj'];
 	if (!elem_has_class($elem, 'object')) {
 		return false;

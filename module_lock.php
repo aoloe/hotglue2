@@ -56,7 +56,7 @@ function lock_alter_save($args)
 
 function lock_render_object($args)
 {
-	$elem = $args['elem'];
+	$elem = &$args['elem'];
 	$obj = &$args['obj'];
 	if (!elem_has_class($elem, 'object')) {
 		return false;
