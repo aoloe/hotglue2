@@ -1,0 +1,12 @@
+type:text
+module:text
+object-height:100px
+object-left:438px
+object-top:198px
+object-width:100px
+object-zindex:100
+text-background-color:rgb(255, 255, 0)
+transform-flip:matrix(-1, 0, 0, 1, 0, 0)
+object-lock:locked
+
+text
