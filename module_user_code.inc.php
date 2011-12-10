@@ -22,8 +22,28 @@ require_once('util.inc.php');
  *	controller that shows a textarea for editing either a page's or the global 
  *	user-defined code files
  */
-function controller_user_code_stylesheet($args)
+function controller_user_code($args)
 {
+
+/**
+ * 	ensuring backwards compatibility with 'stylesheet'
+ */
+	if ($args[0][1] == 'stylesheet') {
+		$page = $args[0][0];
+		if (SHORT_URLS) {
+			header('Location: '.base_url().$page.'/code');		
+		} else {
+			header('Location: '.base_url().'?'.$page.'/code');
+		}
+	}
+	if ($args[0][0] == 'stylesheet') {
+		if (SHORT_URLS) {
+			header('Location: '.base_url().'code');		
+		} else {
+			header('Location: '.base_url().'?code');
+		}
+	}
+
 	if ($args[0][1] == 'code') {
 		// changing page code
 		$page = $args[0][0];
@@ -95,8 +115,11 @@ function controller_user_code_stylesheet($args)
 	echo html_finalize();
 }
 
-register_controller('code', '', 'controller_user_code_stylesheet', array('auth'=>true));
-register_controller('*', 'code', 'controller_user_code_stylesheet', array('auth'=>true));
+register_controller('code', '', 'controller_user_code', array('auth'=>true));
+register_controller('*', 'code', 'controller_user_code', array('auth'=>true));
+
+register_controller('stylesheet', '', 'controller_user_code', array('auth'=>true)); // for backwards compatibility
+register_controller('*', 'stylesheet', 'controller_user_code', array('auth'=>true)); //
 
 
 function user_code_render_object($args)
