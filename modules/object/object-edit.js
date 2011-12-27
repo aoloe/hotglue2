@@ -109,22 +109,38 @@ $(document).ready(function() {
 				if (data['#data']['object-link'] !== undefined) {
 					old_link = data['#data']['object-link'];
 				}
-				var link = prompt('Enter link (e.g. http://hotglue.me/, somepage, #someanchor)', old_link);
-				if (link === null || link == old_link) {
+				var old_target = '';
+				if (data['#data']['object-target'] !== undefined) {
+					old_target = data['#data']['object-target'];
+				}
+				old_linkdata = (old_target == '') ? old_link : old_link + ' ' + old_target;
+				var linkdata = prompt('Enter link (e.g. http://hotglue.me or pagename or anchor name).\nTo add target specify its name after a space (e.g. http://hotglue.me _blank)', old_linkdata);
+				if (linkdata === null || linkdata == old_link + ' ' + old_target) {
 					return;
 				}
-				if (link == '') {
-					// delete link
+				t = linkdata.split(' '); // if there is no space split() returns the string
+				link = t[0];
+				target = t[1];
+				
+				if (link == undefined) {
 					$.glue.backend({ method: 'glue.object_remove_attr', name: $(obj).attr('id'), attr: 'object-link' });
 				} else {
 					// set link
 					$.glue.backend({ method: 'glue.update_object', name: $(obj).attr('id'), 'object-link': link });
+					if (target !== undefined) {
+						// set target
+						$.glue.backend({ method: 'glue.update_object', name: $(obj).attr('id'), 'object-target': target });
+					}
+				}
+				if (old_target !== '' && (target == '' || target == undefined)) {
+					// delete target
+					$.glue.backend({ method: 'glue.object_remove_attr', name: $(obj).attr('id'), attr: 'object-target' });
 				}
 			}
 		}, false);
 	});
 	$.glue.contextmenu.register('object', 'object-link', elem);
-	
+
 	elem = $('<img src="'+$.glue.base_url+'modules/object/object-target.png" alt="btn" title="get the name of this object (for linking to it)" width="32" height="32">');
 	$(elem).bind('click', function(e) {
 		var obj = $(this).data('owner');
