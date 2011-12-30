@@ -419,6 +419,21 @@ function html_add_head_inline($def, $prio = 5)
 }
 
 /**
+* 	add a css rule to the html header
+*
+* 	@param string $rule css rule
+* 	@param int $prio when to insert code (0 - very early to 9 - late)
+*/
+function html_add_css_inline($rule, $prio = 5)
+{
+	global $html;
+	if (!@is_array($html['header']['css_inline'])) {
+		$html['header']['css_inline'] = array();
+	}
+	$html['header']['css_inline'][] = array('rule'=>$rule, 'prio'=>$prio);
+}
+
+/**
  *	add body definitions to the html body
  *
  *	@param string $def heade definition
